@@ -43,6 +43,8 @@ class ViewController: UIViewController   {
         
         self.videoManager.setProcessingBlock(newProcessBlock: self.processImage)
         
+        self.bridge.setTransforms(self.videoManager.transform)
+        
         if !videoManager.isRunning{
             videoManager.start()
         }
