@@ -38,12 +38,13 @@ class ViewController: UIViewController   {
         
         // setup a face detector in swift
         self.detector = CIDetector(ofType: CIDetectorTypeFace,
-                                  context: self.videoManager.getCIContext(), // perform on the GPU is possible
+                                  context: self.videoManager.getCIContext(), // perform on the GPU if possible
                                   options: optsDetector)
         
+        self.bridge.setTransforms(self.videoManager.transform)
         self.videoManager.setProcessingBlock(newProcessBlock: self.processImage)
         
-        self.bridge.setTransforms(self.videoManager.transform)
+        
         
         if !videoManager.isRunning{
             videoManager.start()
@@ -133,7 +134,9 @@ class ViewController: UIViewController   {
     }
     
     @IBAction func setFlashLevel(sender: UISlider) {
+        // Examples for usign the flash
         if(sender.value>0.0){
+            // max value is 1.0
             self.videoManager.turnOnFlashwithLevel(sender.value)
         }
         else if(sender.value==0.0){
