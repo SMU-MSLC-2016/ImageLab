@@ -29,7 +29,7 @@ class ViewController: UIViewController   {
         self.view.backgroundColor = nil
         self.setupFilters()
         
-        self.videoManager = VideoAnalgesic.sharedInstance
+        self.videoManager = VideoAnalgesic(mainView: self.view)
         self.videoManager.setCameraPosition(position: AVCaptureDevice.Position.front)
         
         // create dictionary for face detection
@@ -42,7 +42,7 @@ class ViewController: UIViewController   {
                                   options: optsDetector)
         
         self.bridge.setTransforms(self.videoManager.transform)
-        self.videoManager.setProcessingBlock(newProcessBlock: self.processImage)
+        self.videoManager.setProcessingBlock(newProcessBlock: self.processFromCamera)
         
         
         
@@ -55,7 +55,7 @@ class ViewController: UIViewController   {
     }
     
     //MARK: Process image output
-    func processImage(inputImage:CIImage) -> CIImage{
+    func processFromCamera(inputImage:CIImage) -> CIImage{
         
         // detect faces
         let f = getFaces(img: inputImage)

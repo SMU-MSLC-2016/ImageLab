@@ -26,7 +26,7 @@ using namespace cv;
 
 #pragma mark ===Write Your Code Here===
 // alternatively you can subclass this class and override the process image function
-
+// however, this can cause some unexpected behavior
 
 #pragma mark Define Custom Functions Here
 -(void)processImage{
